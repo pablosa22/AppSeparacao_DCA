@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ConfirmaAcesso">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="matricula" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmaAcessoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmaAcessoResult" type="tns:Pessoa" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Pessoa">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Matricula" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IniciaConferencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IniciaConferenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IniciaConferenciaResult" type="tns:Pedido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Pedido">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumPedido" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Filial" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrdemConf" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Maticula" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtProduto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtItens" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodCli" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Posicao" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidaConferenciaCompleta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaConferenciaCompletaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaConferenciaCompletaResult" type="tns:Conferencia" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Conferencia">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QT_Itens_Conf" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QT_Itens_Org" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Soma_Pro_Org" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Soma_Pro_Sep" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaItensParaConferencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaItensParaConferenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaItensParaConferenciaResult" type="tns:ArrayOfProduto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProduto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Produto" nillable="true" type="tns:Produto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Produto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Seq" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rua" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cod" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descricao" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtN" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtS" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtC" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaItensFinalizados">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaItensFinalizadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaItensFinalizadosResult" type="tns:ArrayOfProduto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaDetalhesDoPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codprod" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaDetalhesDoPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaDetalhesDoPedidoResult" type="tns:ArrayOfDetalhePed" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalhePed">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalhePed" nillable="true" type="tns:DetalhePed" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalhePed">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Pedido" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rua" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AtribuirPedidoParaSeparador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="matricula" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AtribuirPedidoParaSeparadorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SepararProduto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codprod" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="filial" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SepararProdutoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SepararProdutoResult" type="tns:Produto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmaConferencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="qt_digitada" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="qt_corte" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="matricula" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numSeq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmaConferenciaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinalizaConferenciaItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numSeq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizaConferenciaItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviaPedidoParaPainel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="opcao" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numero" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviaPedidoParaPainelResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ExcluirPedidoDoPainel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="opcao" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="numero" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluirPedidoDoPainelResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinalizaConferencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numped" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="conferente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizaConferenciaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaPedidosParaConferencia">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaPedidosParaConferenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaPedidosParaConferenciaResult" type="tns:ArrayOfPainelSeparacao" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPainelSeparacao">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PainelSeparacao" nillable="true" type="tns:PainelSeparacao" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PainelSeparacao">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Carga" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pedido" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filial" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obs2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conferente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Separado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaItensDeCorte">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaItensDeCorteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaItensDeCorteResult" type="tns:ArrayOfPainelCorte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPainelCorte">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PainelCorte" nillable="true" type="tns:PainelCorte" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PainelCorte">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Carga" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pedido" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descricao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Und" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Separador" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtCorte" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaClientesDeClasseBloqueada">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaClientesDeClasseBloqueadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaClientesDeClasseBloqueadaResult" type="tns:ArrayOfCredito" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCredito">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Credito" nillable="true" type="tns:Credito" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Credito">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Filial" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Carga" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pedido" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Posicao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cobranca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Classe" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bloq" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BloqDef" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConfirmaAcessoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmaAcesso" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaAcessoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmaAcessoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IniciaConferenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:IniciaConferencia" />
+  </wsdl:message>
+  <wsdl:message name="IniciaConferenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:IniciaConferenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaConferenciaCompletaSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaConferenciaCompleta" />
+  </wsdl:message>
+  <wsdl:message name="ValidaConferenciaCompletaSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaConferenciaCompletaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensParaConferenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaItensParaConferencia" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensParaConferenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaItensParaConferenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensFinalizadosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaItensFinalizados" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensFinalizadosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaItensFinalizadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaDetalhesDoPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaDetalhesDoPedido" />
+  </wsdl:message>
+  <wsdl:message name="ListaDetalhesDoPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaDetalhesDoPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AtribuirPedidoParaSeparadorSoapIn">
+    <wsdl:part name="parameters" element="tns:AtribuirPedidoParaSeparador" />
+  </wsdl:message>
+  <wsdl:message name="AtribuirPedidoParaSeparadorSoapOut">
+    <wsdl:part name="parameters" element="tns:AtribuirPedidoParaSeparadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="SepararProdutoSoapIn">
+    <wsdl:part name="parameters" element="tns:SepararProduto" />
+  </wsdl:message>
+  <wsdl:message name="SepararProdutoSoapOut">
+    <wsdl:part name="parameters" element="tns:SepararProdutoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaConferenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmaConferencia" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaConferenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmaConferenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizaConferenciaItemSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizaConferenciaItem" />
+  </wsdl:message>
+  <wsdl:message name="FinalizaConferenciaItemSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizaConferenciaItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviaPedidoParaPainelSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviaPedidoParaPainel" />
+  </wsdl:message>
+  <wsdl:message name="EnviaPedidoParaPainelSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviaPedidoParaPainelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPedidoDoPainelSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcluirPedidoDoPainel" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPedidoDoPainelSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcluirPedidoDoPainelResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizaConferenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizaConferencia" />
+  </wsdl:message>
+  <wsdl:message name="FinalizaConferenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizaConferenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaPedidosParaConferenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaPedidosParaConferencia" />
+  </wsdl:message>
+  <wsdl:message name="ListaPedidosParaConferenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaPedidosParaConferenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensDeCorteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaItensDeCorte" />
+  </wsdl:message>
+  <wsdl:message name="ListaItensDeCorteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaItensDeCorteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaClientesDeClasseBloqueadaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaClientesDeClasseBloqueada" />
+  </wsdl:message>
+  <wsdl:message name="ListaClientesDeClasseBloqueadaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaClientesDeClasseBloqueadaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService1Soap">
+    <wsdl:operation name="ConfirmaAcesso">
+      <wsdl:input message="tns:ConfirmaAcessoSoapIn" />
+      <wsdl:output message="tns:ConfirmaAcessoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IniciaConferencia">
+      <wsdl:input message="tns:IniciaConferenciaSoapIn" />
+      <wsdl:output message="tns:IniciaConferenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConferenciaCompleta">
+      <wsdl:input message="tns:ValidaConferenciaCompletaSoapIn" />
+      <wsdl:output message="tns:ValidaConferenciaCompletaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensParaConferencia">
+      <wsdl:input message="tns:ListaItensParaConferenciaSoapIn" />
+      <wsdl:output message="tns:ListaItensParaConferenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensFinalizados">
+      <wsdl:input message="tns:ListaItensFinalizadosSoapIn" />
+      <wsdl:output message="tns:ListaItensFinalizadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaDetalhesDoPedido">
+      <wsdl:input message="tns:ListaDetalhesDoPedidoSoapIn" />
+      <wsdl:output message="tns:ListaDetalhesDoPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AtribuirPedidoParaSeparador">
+      <wsdl:input message="tns:AtribuirPedidoParaSeparadorSoapIn" />
+      <wsdl:output message="tns:AtribuirPedidoParaSeparadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SepararProduto">
+      <wsdl:input message="tns:SepararProdutoSoapIn" />
+      <wsdl:output message="tns:SepararProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaConferencia">
+      <wsdl:input message="tns:ConfirmaConferenciaSoapIn" />
+      <wsdl:output message="tns:ConfirmaConferenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferenciaItem">
+      <wsdl:input message="tns:FinalizaConferenciaItemSoapIn" />
+      <wsdl:output message="tns:FinalizaConferenciaItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaPedidoParaPainel">
+      <wsdl:input message="tns:EnviaPedidoParaPainelSoapIn" />
+      <wsdl:output message="tns:EnviaPedidoParaPainelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPedidoDoPainel">
+      <wsdl:input message="tns:ExcluirPedidoDoPainelSoapIn" />
+      <wsdl:output message="tns:ExcluirPedidoDoPainelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferencia">
+      <wsdl:input message="tns:FinalizaConferenciaSoapIn" />
+      <wsdl:output message="tns:FinalizaConferenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaConferencia">
+      <wsdl:input message="tns:ListaPedidosParaConferenciaSoapIn" />
+      <wsdl:output message="tns:ListaPedidosParaConferenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensDeCorte">
+      <wsdl:input message="tns:ListaItensDeCorteSoapIn" />
+      <wsdl:output message="tns:ListaItensDeCorteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaClientesDeClasseBloqueada">
+      <wsdl:input message="tns:ListaClientesDeClasseBloqueadaSoapIn" />
+      <wsdl:output message="tns:ListaClientesDeClasseBloqueadaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmaAcesso">
+      <soap:operation soapAction="http://tempuri.org/ConfirmaAcesso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciaConferencia">
+      <soap:operation soapAction="http://tempuri.org/IniciaConferencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConferenciaCompleta">
+      <soap:operation soapAction="http://tempuri.org/ValidaConferenciaCompleta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensParaConferencia">
+      <soap:operation soapAction="http://tempuri.org/ListaItensParaConferencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensFinalizados">
+      <soap:operation soapAction="http://tempuri.org/ListaItensFinalizados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDetalhesDoPedido">
+      <soap:operation soapAction="http://tempuri.org/ListaDetalhesDoPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtribuirPedidoParaSeparador">
+      <soap:operation soapAction="http://tempuri.org/AtribuirPedidoParaSeparador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SepararProduto">
+      <soap:operation soapAction="http://tempuri.org/SepararProduto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaConferencia">
+      <soap:operation soapAction="http://tempuri.org/ConfirmaConferencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferenciaItem">
+      <soap:operation soapAction="http://tempuri.org/FinalizaConferenciaItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaPedidoParaPainel">
+      <soap:operation soapAction="http://tempuri.org/EnviaPedidoParaPainel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPedidoDoPainel">
+      <soap:operation soapAction="http://tempuri.org/ExcluirPedidoDoPainel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferencia">
+      <soap:operation soapAction="http://tempuri.org/FinalizaConferencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaConferencia">
+      <soap:operation soapAction="http://tempuri.org/ListaPedidosParaConferencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensDeCorte">
+      <soap:operation soapAction="http://tempuri.org/ListaItensDeCorte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaClientesDeClasseBloqueada">
+      <soap:operation soapAction="http://tempuri.org/ListaClientesDeClasseBloqueada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmaAcesso">
+      <soap12:operation soapAction="http://tempuri.org/ConfirmaAcesso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciaConferencia">
+      <soap12:operation soapAction="http://tempuri.org/IniciaConferencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConferenciaCompleta">
+      <soap12:operation soapAction="http://tempuri.org/ValidaConferenciaCompleta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensParaConferencia">
+      <soap12:operation soapAction="http://tempuri.org/ListaItensParaConferencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensFinalizados">
+      <soap12:operation soapAction="http://tempuri.org/ListaItensFinalizados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDetalhesDoPedido">
+      <soap12:operation soapAction="http://tempuri.org/ListaDetalhesDoPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtribuirPedidoParaSeparador">
+      <soap12:operation soapAction="http://tempuri.org/AtribuirPedidoParaSeparador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SepararProduto">
+      <soap12:operation soapAction="http://tempuri.org/SepararProduto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaConferencia">
+      <soap12:operation soapAction="http://tempuri.org/ConfirmaConferencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferenciaItem">
+      <soap12:operation soapAction="http://tempuri.org/FinalizaConferenciaItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaPedidoParaPainel">
+      <soap12:operation soapAction="http://tempuri.org/EnviaPedidoParaPainel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPedidoDoPainel">
+      <soap12:operation soapAction="http://tempuri.org/ExcluirPedidoDoPainel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizaConferencia">
+      <soap12:operation soapAction="http://tempuri.org/FinalizaConferencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaConferencia">
+      <soap12:operation soapAction="http://tempuri.org/ListaPedidosParaConferencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaItensDeCorte">
+      <soap12:operation soapAction="http://tempuri.org/ListaItensDeCorte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaClientesDeClasseBloqueada">
+      <soap12:operation soapAction="http://tempuri.org/ListaClientesDeClasseBloqueada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService1">
+    <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
+      <soap:address location="http://192.168.132.12:8080/WebService1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
+      <soap12:address location="http://192.168.132.12:8080/WebService1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -54,7 +54,7 @@
             <br />
                 <asp:Button ID="btEntrar" class="btn btn-outline-success btn-block" runat="server"  Text="Entrar" OnClick="btEntrar_Click"   />                    
             <br />                 
-            <p class="mt-5 mb-3 text-muted">&copy; Automação Versão 1.0</p>             
+            <p class="mt-5 mb-3 text-muted">&copy; Automação Versão 2.0</p>             
         </div>   
     </form>
       <!-- Optional JavaScript -->

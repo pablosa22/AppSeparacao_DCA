@@ -392,6 +392,10 @@ namespace AppDCASeparacao
                     OracleCommand cmd1 = new OracleCommand("UPDATE PCCARREG C SET C.NUMVIASMAPA = 1 WHERE NUMCAR IN (SELECT NUMCAR FROM PCPEDC WHERE NUMPED =:numped AND DATA > TRUNC(SYSDATE) - 220 AND ORDEMCONF IS NULL)", cnn);
                     cmd1.Parameters.Add(new OracleParameter("NUMPED", numero));
                     cmd1.ExecuteNonQuery();
+
+                    OracleCommand cmd2 = new OracleCommand("UPDATE PCPEDI SET QTSEPARADA = NULL WHERE NUMPED =:numero AND DATA > TRUNC(SYSDATE) - 220 AND ORDEMCONF IS NULL", cnn);
+                    cmd.Parameters.Add(new OracleParameter("NUMPED", numero));
+                    cmd2.ExecuteNonQuery();
                 }
                 else if (opcao == 3 && numero != 0)
                 {
@@ -403,6 +407,10 @@ namespace AppDCASeparacao
                     OracleCommand cmd1 = new OracleCommand("UPDATE PCCARREG C SET C.NUMVIASMAPA = 1 WHERE NUMCAR =:numped", cnn);
                     cmd1.Parameters.Add(new OracleParameter("NUMCAR", numero));
                     cmd1.ExecuteNonQuery();
+
+                    OracleCommand cmd2 = new OracleCommand("UPDATE PCPEDI SET QTSEPARADA = NULL WHERE NUMCAR =:numero AND DATA > TRUNC(SYSDATE) - 220 AND ORDEMCONF IS NULL", cnn);
+                    cmd.Parameters.Add(new OracleParameter("NUMPED", numero));
+                    cmd2.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
