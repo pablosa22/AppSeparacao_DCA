@@ -786,10 +786,10 @@
   </wsdl:binding>
   <wsdl:service name="WebService1">
     <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
-      <soap:address location="http://192.168.132.12:8080/WebService1.asmx" />
+      <soap:address location="https://localhost:44379/WebService1.asmx" />
     </wsdl:port>
     <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
-      <soap12:address location="http://192.168.132.12:8080/WebService1.asmx" />
+      <soap12:address location="https://localhost:44379/WebService1.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
