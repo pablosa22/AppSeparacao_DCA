@@ -506,9 +506,10 @@ namespace AppDCASeparacao
             try
             {
                 cnn.Open();
-                OracleCommand cmd = new OracleCommand("SELECT C.NUMCAR, C.NUMPED, C.CODCLI, SUBSTR(L.CLIENTE, 1, INSTR(L.CLIENTE,' ')-1 )||SUBSTR(L.CLIENTE, INSTR(L.CLIENTE, ' '), INSTR(L.CLIENTE, ' ',2))CLIENTE," +
-                    " C.CODFILIAL, C.OBS, C.OBS1, C.OBS2, SUBSTR(E.NOME, 1, INSTR(E.NOME, ' ') - 1)CONFERENTE, I.PERC FROM PCPEDC C, PCCLIENT L, PCEMPR E,(SELECT I.NUMPED, ROUND(((COUNT(I.QTSEPARADA) * 100) / COUNT(I.QT)), 2) || '%' PERC FROM PCPEDI I GROUP BY I.NUMPED)I " +
-                    " WHERE C.CODCLI = L.CODCLI AND E.MATRICULA(+) = C.CODFUNCSEP AND I.NUMPED = C.NUMPED AND DATA > TRUNC(SYSDATE) - 120 AND ORDEMCONF IS NOT NULL AND C.DTFINALSEP IS NULL AND C.DTFAT IS NULL ORDER BY C.DTIMPORTACAO ASC ", cnn);
+                OracleCommand cmd = new OracleCommand("SELECT C.NUMCAR, C.NUMPED, C.CODCLI, SUBSTR(L.CLIENTE, 1, INSTR(L.CLIENTE,' ')-1 )||SUBSTR(L.CLIENTE, INSTR(L.CLIENTE, ' '), INSTR(L.CLIENTE, ' ',2))CLIENTE, C.CODFILIAL, " +
+                    " (SELECT COUNT(DISTINCT P.CODPROD)AREA_EXT FROM PCPRODUT P, PCPEDI I WHERE P.CODPROD = I.CODPROD AND I.NUMPED = C.NUMPED AND P.DESCRICAO1 = '1') AREA_EXT, " +
+                    " (SELECT COUNT(DISTINCT P.CODPROD)AREA_EXT FROM PCPRODUT P, PCPEDI I WHERE P.CODPROD = I.CODPROD AND I.NUMPED = C.NUMPED AND P.DESCRICAO1 IS NULL)AREA_INT, SUBSTR(E.NOME, 1, INSTR(E.NOME, ' ') - 1)CONFERENTE, I.PERC FROM PCPEDC C, " +
+                    " PCCLIENT L, PCEMPR E, (SELECT I.NUMPED, ROUND(((COUNT(I.QTSEPARADA) * 100) / COUNT(I.QT)), 2) || '%' PERC FROM PCPEDI I GROUP BY I.NUMPED)I WHERE C.CODCLI = L.CODCLI AND E.MATRICULA(+) = C.CODFUNCSEP AND I.NUMPED = C.NUMPED AND DATA > TRUNC(SYSDATE) - 120 AND ORDEMCONF IS NOT NULL AND C.DTFINALSEP IS NULL AND C.DTFAT IS NULL ORDER BY C.DTIMPORTACAO ASC ", cnn);
                 cmd.BindByName = true;
                 OracleDataReader rdr = cmd.ExecuteReader();
 
@@ -523,9 +524,8 @@ namespace AppDCASeparacao
                     painelSeparacao.Codigo = Convert.ToInt32(rdr["CODCLI"]);
                     painelSeparacao.Cliente = rdr["CLIENTE"].ToString();
                     painelSeparacao.Filial = rdr["CODFILIAL"].ToString();
-                    painelSeparacao.Obs = rdr["OBS"].ToString();
-                    painelSeparacao.Obs1 = rdr["OBS1"].ToString();
-                    painelSeparacao.Obs2 = rdr["OBS2"].ToString();
+                    painelSeparacao.AreaExt = rdr["AREA_EXT"].ToString();
+                    painelSeparacao.AreaInt = rdr["AREA_INT"].ToString();                    
                     painelSeparacao.Conferente = rdr["CONFERENTE"].ToString();
                     painelSeparacao.Separado = rdr["PERC"].ToString();
                     list.Add(painelSeparacao);

@@ -625,13 +625,10 @@ namespace AppDCASeparacao.ServiceReference1 {
         private string ClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ObsField;
+        private string AreaExtField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Obs1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Obs2Field;
+        private string AreaIntField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ConferenteField;
@@ -715,45 +712,32 @@ namespace AppDCASeparacao.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
-        public string Obs {
+        public string AreaExt {
             get {
-                return this.ObsField;
+                return this.AreaExtField;
             }
             set {
-                if ((object.ReferenceEquals(this.ObsField, value) != true)) {
-                    this.ObsField = value;
-                    this.RaisePropertyChanged("Obs");
+                if ((object.ReferenceEquals(this.AreaExtField, value) != true)) {
+                    this.AreaExtField = value;
+                    this.RaisePropertyChanged("AreaExt");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
-        public string Obs1 {
+        public string AreaInt {
             get {
-                return this.Obs1Field;
+                return this.AreaIntField;
             }
             set {
-                if ((object.ReferenceEquals(this.Obs1Field, value) != true)) {
-                    this.Obs1Field = value;
-                    this.RaisePropertyChanged("Obs1");
+                if ((object.ReferenceEquals(this.AreaIntField, value) != true)) {
+                    this.AreaIntField = value;
+                    this.RaisePropertyChanged("AreaInt");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
-        public string Obs2 {
-            get {
-                return this.Obs2Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Obs2Field, value) != true)) {
-                    this.Obs2Field = value;
-                    this.RaisePropertyChanged("Obs2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
         public string Conferente {
             get {
                 return this.ConferenteField;
@@ -766,7 +750,7 @@ namespace AppDCASeparacao.ServiceReference1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
         public string Separado {
             get {
                 return this.SeparadoField;

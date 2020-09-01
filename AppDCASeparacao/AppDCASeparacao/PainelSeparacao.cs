@@ -12,9 +12,8 @@ namespace AppDCASeparacao
         public string Filial { get; set; }
         public int Codigo { get; set; }
         public string Cliente { get; set; }
-        public string Obs { get; set; }
-        public string Obs1 { get; set; }
-        public string Obs2 { get; set; }
+        public string AreaExt { get; set; }
+        public string AreaInt { get; set; }        
         public string Conferente { get; set; }
         public string Separado { get; set; }
     }
