@@ -88,6 +88,9 @@
     <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.DetalhePed.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.Faturamento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.IniciaConferenciaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -107,6 +110,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.ListaPedidosParaConferenciaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ServiceReference1\AppDCASeparacao.ServiceReference1.PainelCorte.datasource">
@@ -154,6 +160,7 @@
     <Content Include="Menu.aspx" />
     <Content Include="MenuApp.aspx" />
     <Content Include="PainelCorte.aspx" />
+    <Content Include="PainelFaturamento.aspx" />
     <Content Include="PainelSeparacao.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -299,6 +306,7 @@
     <Compile Include="EnviaPainel.aspx.designer.cs">
       <DependentUpon>EnviaPainel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Faturamento.cs" />
     <Compile Include="Grafico.aspx.cs">
       <DependentUpon>Grafico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,6 +343,13 @@
       <DependentUpon>PainelCorte.aspx</DependentUpon>
     </Compile>
     <Compile Include="PainelCorte.cs" />
+    <Compile Include="PainelFaturamento.aspx.cs">
+      <DependentUpon>PainelFaturamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PainelFaturamento.aspx.designer.cs">
+      <DependentUpon>PainelFaturamento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PainelSeparacao.cs" />
     <Compile Include="PainelSeparacao.aspx.cs">
       <DependentUpon>PainelSeparacao.aspx</DependentUpon>

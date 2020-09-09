@@ -325,6 +325,31 @@
           <s:element minOccurs="0" maxOccurs="1" name="BloqDef" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ListaPedidosParaFaturar">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaPedidosParaFaturarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaPedidosParaFaturarResult" type="tns:ArrayOfFaturamento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFaturamento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Faturamento" nillable="true" type="tns:Faturamento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Faturamento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Carga" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtPedido" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QtItens" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PedPentendente" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PedFinalizado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Faturar" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ConfirmaAcessoSoapIn">
@@ -423,6 +448,12 @@
   <wsdl:message name="ListaClientesDeClasseBloqueadaSoapOut">
     <wsdl:part name="parameters" element="tns:ListaClientesDeClasseBloqueadaResponse" />
   </wsdl:message>
+  <wsdl:message name="ListaPedidosParaFaturarSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaPedidosParaFaturar" />
+  </wsdl:message>
+  <wsdl:message name="ListaPedidosParaFaturarSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaPedidosParaFaturarResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="ConfirmaAcesso">
       <wsdl:input message="tns:ConfirmaAcessoSoapIn" />
@@ -487,6 +518,10 @@
     <wsdl:operation name="ListaClientesDeClasseBloqueada">
       <wsdl:input message="tns:ListaClientesDeClasseBloqueadaSoapIn" />
       <wsdl:output message="tns:ListaClientesDeClasseBloqueadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaFaturar">
+      <wsdl:input message="tns:ListaPedidosParaFaturarSoapIn" />
+      <wsdl:output message="tns:ListaPedidosParaFaturarSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -635,6 +670,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaFaturar">
+      <soap:operation soapAction="http://tempuri.org/ListaPedidosParaFaturar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -775,6 +819,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListaClientesDeClasseBloqueada">
       <soap12:operation soapAction="http://tempuri.org/ListaClientesDeClasseBloqueada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPedidosParaFaturar">
+      <soap12:operation soapAction="http://tempuri.org/ListaPedidosParaFaturar" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

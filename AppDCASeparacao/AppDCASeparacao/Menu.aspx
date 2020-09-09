@@ -44,6 +44,15 @@
             }
         }
 
+        function DivClickedPainelFaturamento() {
+            var btPainelFaturamento = $('#<%=btPainelFaturamento.ClientID%>');
+            if (btPainelFaturamento != null) {
+                btPainelFaturamento.click();
+            }
+        }
+
+        
+
     </script>
 </head>
 <body>
@@ -89,8 +98,8 @@
 
         <div class="row">
             <div class="col-lg-4 text-center">
-                <asp:Button runat="server" ID="btPainelFaturamento" Style="display: none" />
-                <div onclick="javascript:DivClickedPainelAlmoxarifado(); return true;">
+                <asp:Button runat="server" ID="btPainelFaturamento" Style="display: none" OnClick="btPainelFaturamento_Onclik" />
+                <div onclick="javascript:DivClickedPainelFaturamento(); return true;">
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/img/Almoxarifado.png" Width="20%" />
                     <h4>Painel Faturamento</h4>
                 </div>

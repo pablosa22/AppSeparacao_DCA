@@ -635,5 +635,50 @@ namespace AppDCASeparacao
             return list;
 
         }
+
+        //Painel faturamento
+        [WebMethod]
+        public List<Faturamento> ListaPedidosParaFaturar()
+        {
+            OracleConnection cnn = new OracleConnection("DATA SOURCE=192.168.132.20:1521/WINT;PERSIST SECURITY INFO=True;USER ID=AUTOMACAO; Password=AUT0M4C302020;");
+            List<Faturamento> list = new List<Faturamento>();
+            try
+            {
+                cnn.Open();
+                OracleCommand cmd = new OracleCommand("SELECT NUMCAR, COUNT(DISTINCT NUMPED)QTPEDIDOS, SUM(NUMITENS)QTITENS, " +
+                    " (SELECT COUNT(DISTINCT NUMPED)EM_ABERTO FROM PCPEDC WHERE POSICAO = 'M' AND ORDEMCONF IS NOT NULL AND DATA > TRUNC(SYSDATE) - 60 AND DTFINALSEP IS NULL)PED_PENDENTE, " +
+                    " (SELECT COUNT(DISTINCT NUMPED)FINALIZADO FROM PCPEDC WHERE POSICAO = 'M' AND ORDEMCONF IS NOT NULL AND DATA > TRUNC(SYSDATE) - 60 AND DTFINALSEP IS NOT NULL)PED_FINALIZADO ," +
+                    " DECODE((SELECT COUNT(DISTINCT NUMPED)EM_ABERTO FROM PCPEDC WHERE POSICAO = 'M' AND ORDEMCONF IS NOT NULL AND DATA > TRUNC(SYSDATE) - 60 AND DTFINALSEP IS NULL),0,'SIM','NAO')FATURAR " +
+                    " FROM PCPEDC C WHERE POSICAO = 'M' AND ORDEMCONF IS NOT NULL AND DATA > TRUNC(SYSDATE) - 60 GROUP BY NUMCAR ", cnn);
+                cmd.BindByName = true;
+                OracleDataReader rdr = cmd.ExecuteReader();
+
+                Faturamento faturamento = null;
+
+                while (rdr.Read())
+                {
+                    faturamento = new Faturamento();
+
+                    faturamento.Carga = Convert.ToInt64(rdr["NUMCAR"]);
+                    faturamento.QtPedido = Convert.ToInt32(rdr["QTPEDIDOS"]);
+                    faturamento.QtItens = Convert.ToDecimal(rdr["QTITENS"].ToString());
+                    faturamento.PedPentendente = Convert.ToInt32(rdr["PED_PENDENTE"]);
+                    faturamento.PedFinalizado = Convert.ToInt32(rdr["PED_FINALIZADO"]);
+                    faturamento.Faturar = rdr["FATURAR"].ToString();                   
+                    list.Add(faturamento);
+                }
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return list;
+        }
+
     }
 }

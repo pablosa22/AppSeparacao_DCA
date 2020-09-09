@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PainelSeparacao.aspx.cs" Inherits="AppDCASeparacao.PainelSeparação" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PainelFaturamento.aspx.cs" Inherits="AppDCASeparacao.PainelFaturamento" %>
 
 <!DOCTYPE html>
 
@@ -12,21 +12,23 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="estilo.css" />
-    <title>Painel Separação</title>
+    <title>Painel Faturamento</title>
 </head>
 <body>
-    <form id="form1" runat="server">        
-         <div class="row">            
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-			   <asp:GridView ID="GridView1" runat="server" Width="100%" CellPadding="4" ForeColor="White" Font-Size="11" CssClass="table table-bordered table-dark table-sm" GridLines="None" AllowPaging="False">           
-               </asp:GridView>                                     
-            </div>
-         </div>
-    </form>    
+    <form id="form1" runat="server">
+        <div class="pb-2 mt-4 mb-2 border-bottom container">
+		    <h5>Carregamentos em Conferência</h5> 
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		    <asp:GridView ID="GridView1" runat="server" Width="100%" CellPadding="4" ForeColor="White" Font-Size="12" CssClass="table table-bordered table-dark table-sm" GridLines="None" AllowPaging="False">           
+            </asp:GridView>                                     
+        </div>
+
+    </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 </body>
 </html>

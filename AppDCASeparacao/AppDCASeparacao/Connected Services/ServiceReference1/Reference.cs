@@ -1127,6 +1127,126 @@ namespace AppDCASeparacao.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Faturamento", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class Faturamento : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private long CargaField;
+        
+        private int QtPedidoField;
+        
+        private decimal QtItensField;
+        
+        private int PedPentendenteField;
+        
+        private int PedFinalizadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FaturarField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public long Carga {
+            get {
+                return this.CargaField;
+            }
+            set {
+                if ((this.CargaField.Equals(value) != true)) {
+                    this.CargaField = value;
+                    this.RaisePropertyChanged("Carga");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int QtPedido {
+            get {
+                return this.QtPedidoField;
+            }
+            set {
+                if ((this.QtPedidoField.Equals(value) != true)) {
+                    this.QtPedidoField = value;
+                    this.RaisePropertyChanged("QtPedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public decimal QtItens {
+            get {
+                return this.QtItensField;
+            }
+            set {
+                if ((this.QtItensField.Equals(value) != true)) {
+                    this.QtItensField = value;
+                    this.RaisePropertyChanged("QtItens");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public int PedPentendente {
+            get {
+                return this.PedPentendenteField;
+            }
+            set {
+                if ((this.PedPentendenteField.Equals(value) != true)) {
+                    this.PedPentendenteField = value;
+                    this.RaisePropertyChanged("PedPentendente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public int PedFinalizado {
+            get {
+                return this.PedFinalizadoField;
+            }
+            set {
+                if ((this.PedFinalizadoField.Equals(value) != true)) {
+                    this.PedFinalizadoField = value;
+                    this.RaisePropertyChanged("PedFinalizado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string Faturar {
+            get {
+                return this.FaturarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FaturarField, value) != true)) {
+                    this.FaturarField = value;
+                    this.RaisePropertyChanged("Faturar");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.WebService1Soap")]
     public interface WebService1Soap {
@@ -1236,6 +1356,13 @@ namespace AppDCASeparacao.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaClientesDeClasseBloqueada", ReplyAction="*")]
         System.Threading.Tasks.Task<AppDCASeparacao.ServiceReference1.ListaClientesDeClasseBloqueadaResponse> ListaClientesDeClasseBloqueadaAsync(AppDCASeparacao.ServiceReference1.ListaClientesDeClasseBloqueadaRequest request);
+        
+        // CODEGEN: Gerando contrato de mensagem porque o nome do elemento ListaPedidosParaFaturarResult no namespace http://tempuri.org/ não está marcado como nulo
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaPedidosParaFaturar", ReplyAction="*")]
+        AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse ListaPedidosParaFaturar(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ListaPedidosParaFaturar", ReplyAction="*")]
+        System.Threading.Tasks.Task<AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse> ListaPedidosParaFaturarAsync(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1933,6 +2060,67 @@ namespace AppDCASeparacao.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListaPedidosParaFaturarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListaPedidosParaFaturar", Namespace="http://tempuri.org/", Order=0)]
+        public AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequestBody Body;
+        
+        public ListaPedidosParaFaturarRequest() {
+        }
+        
+        public ListaPedidosParaFaturarRequest(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ListaPedidosParaFaturarRequestBody {
+        
+        public ListaPedidosParaFaturarRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListaPedidosParaFaturarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListaPedidosParaFaturarResponse", Namespace="http://tempuri.org/", Order=0)]
+        public AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponseBody Body;
+        
+        public ListaPedidosParaFaturarResponse() {
+        }
+        
+        public ListaPedidosParaFaturarResponse(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ListaPedidosParaFaturarResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public AppDCASeparacao.ServiceReference1.Faturamento[] ListaPedidosParaFaturarResult;
+        
+        public ListaPedidosParaFaturarResponseBody() {
+        }
+        
+        public ListaPedidosParaFaturarResponseBody(AppDCASeparacao.ServiceReference1.Faturamento[] ListaPedidosParaFaturarResult) {
+            this.ListaPedidosParaFaturarResult = ListaPedidosParaFaturarResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebService1SoapChannel : AppDCASeparacao.ServiceReference1.WebService1Soap, System.ServiceModel.IClientChannel {
     }
@@ -2268,6 +2456,29 @@ namespace AppDCASeparacao.ServiceReference1 {
             AppDCASeparacao.ServiceReference1.ListaClientesDeClasseBloqueadaRequest inValue = new AppDCASeparacao.ServiceReference1.ListaClientesDeClasseBloqueadaRequest();
             inValue.Body = new AppDCASeparacao.ServiceReference1.ListaClientesDeClasseBloqueadaRequestBody();
             return ((AppDCASeparacao.ServiceReference1.WebService1Soap)(this)).ListaClientesDeClasseBloqueadaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse AppDCASeparacao.ServiceReference1.WebService1Soap.ListaPedidosParaFaturar(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest request) {
+            return base.Channel.ListaPedidosParaFaturar(request);
+        }
+        
+        public AppDCASeparacao.ServiceReference1.Faturamento[] ListaPedidosParaFaturar() {
+            AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest inValue = new AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest();
+            inValue.Body = new AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequestBody();
+            AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse retVal = ((AppDCASeparacao.ServiceReference1.WebService1Soap)(this)).ListaPedidosParaFaturar(inValue);
+            return retVal.Body.ListaPedidosParaFaturarResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse> AppDCASeparacao.ServiceReference1.WebService1Soap.ListaPedidosParaFaturarAsync(AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest request) {
+            return base.Channel.ListaPedidosParaFaturarAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarResponse> ListaPedidosParaFaturarAsync() {
+            AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest inValue = new AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequest();
+            inValue.Body = new AppDCASeparacao.ServiceReference1.ListaPedidosParaFaturarRequestBody();
+            return ((AppDCASeparacao.ServiceReference1.WebService1Soap)(this)).ListaPedidosParaFaturarAsync(inValue);
         }
     }
 }

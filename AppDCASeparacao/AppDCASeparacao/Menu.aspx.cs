@@ -39,5 +39,10 @@ namespace AppDCASeparacao
         {
             Response.Redirect("AuditoriaCliente.aspx");
         }
+
+        protected void btPainelFaturamento_Onclik(object sender, EventArgs e)
+        {
+            Response.Redirect("PainelFaturamento.aspx");
+        }
     }
 }
